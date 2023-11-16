@@ -45,7 +45,7 @@ def capture_and_save_image(label, save_folder):
 
 
 st.sidebar.title("Navigation")
-section = st.sidebar.radio("Go to", ["Introduction", "Section 2", "Section 3", "Section 4", "Section 5", "Section 6", "Section 7", "Section 8", "Section 9", "Train", "Section 11", "Section 12", "Section 13", "Section 14"])
+section = st.sidebar.radio("Go to", ["Introduction", "Face Recognition by Computer", "Step - 1", "Collect Data", "Upload or Capture Image", "Step - 2","Training Initiation", "Machine Learning", "Setup the Model", "Training Parameters", "Train", "Re-Train", "Step - 3","Test", "Improve Accuracy", "Step - 4", "Conclusion"])
 
 # Set the theme to light
 st.markdown(
@@ -111,13 +111,13 @@ if section == "Introduction":
         image1 = Image.open('media/Picture1.png')
         st.image(image1, caption='')
     if st.button("Next"):
-        st.markdown("<a href='#Section-2'>Go to Section 2</a>", unsafe_allow_html=True)
+        st.markdown("<a href='#Section-2'>Go to Face Recognition by Computer</a>", unsafe_allow_html=True)
 
   
 
-# Section 2: How do Computers Recognize Faces? /////////////////////////////////////////////////////////////////////////////////////
-elif section == "Section 2":
-    st.markdown('<div class="center"><h2>Section 2: How do Computers Recognize Faces?</h2></div>', unsafe_allow_html=True)
+# Face Recognition by Computer: Face Recognition by Computer /////////////////////////////////////////////////////////////////////////////////////
+elif section == "Face Recognition by Computer":
+    st.markdown('<div class="center"><h2>Face Recognition by Computer</h2></div>', unsafe_allow_html=True)
     st.markdown("""
                 <div class=contaienr> <p>The Face Recognition system uses Machine Learning to analyze and process facial features from images or videos. Features can include anything, from the distance between your eyes to the size of your nose. These features, which are unique to each person, are also known as Facial Landmarks. The machine learns patterns in these landmarks by training Artificial Neural Networks. The machine can then identify people’s faces by matching these learned patterns against new facial data.
                     </p> </div>
@@ -130,9 +130,9 @@ elif section == "Section 2":
     if st.button("Previous"):
         st.markdown("<a href='#Section-1'>Go to Section 1</a>", unsafe_allow_html=True)
     if st.button("Next"):
-        st.markdown("<a href='#Section-3'>Go to Section 3</a>", unsafe_allow_html=True)
+        st.markdown("<a href='#Section-3'>Go to Step - 1</a>", unsafe_allow_html=True)
 
-elif section == "Section 3":
+elif section == "Step - 1":
     st.markdown("<div class='center'><h2>Teach the Computer to Recognize your Face</h2></div>", unsafe_allow_html=True)
     
     columns = st.columns([1, 1, 1, 1, 1, 1, 1])
@@ -182,7 +182,7 @@ elif section == "Section 3":
     columns2[6].markdown("""<p style="text-align:center; font-weight: bold;">      Export  </p> """, unsafe_allow_html=True)
 
 # section3: Collect data/////////////////////////////////////////////////////////////////////////////////////
-elif section == "Section 4":
+elif section == "Collect Data":
     st.markdown("<div class = 'center'><h2 id='Section-3'>Step 1 - Collect Data</h2></div>", unsafe_allow_html=True)
     st.markdown("""
                 <div class=contaienr> We want our model to learn how to recognize your face. We will need two kinds of images for this - images of you, and images of people who are not you. This way, the model will learn to recognize how you look and also recognize how you don’t look. </div> """, unsafe_allow_html=True)
@@ -198,8 +198,8 @@ elif section == "Section 4":
                 </div>""", unsafe_allow_html=True)
 
 
-# Section 5: Teach the Computer to Recognize your Face /////////////////////////////////////////////////////////////////////////////////////
-elif section == "Section 5":
+# Upload or Capture Image: Teach the Computer to Recognize your Face /////////////////////////////////////////////////////////////////////////////////////
+elif section == "Upload or Capture Image":
     get_session_state()  # Get or create session state
 
     col1, col2 = st.columns(2)
@@ -240,11 +240,60 @@ elif section == "Section 5":
                 capture_and_save_image('not_me', os.path.abspath('captured_images/not_me'))
 
     if st.button("Previous"):
-        st.markdown("<a href='#Section-3'>Go to Section 3</a>", unsafe_allow_html=True)
+        st.markdown("<a href='#Section-3'>Go to Step - 1</a>", unsafe_allow_html=True)
 
 
-# Section 6: Some other section 
-elif section == "Section 6":
+elif section == "Step - 2":
+    st.markdown("<div class='center'><h2>Teach the Computer to Recognize your Face</h2></div>", unsafe_allow_html=True)
+    
+    columns = st.columns([1, 1, 1, 1, 1, 1, 1])
+
+    # Step 1
+    step1 = columns[0].button("Step 1", key="step1", help="Collect Data", on_click=None, args=None, kwargs=None)
+    columns[1].write("\u2192", unsafe_allow_html=True)  # Unicode right arrow
+
+    # Step 2
+    step2 = columns[2].button("Step 2", key="step2", help="Train", on_click=None, args=None, kwargs=None)
+    columns[3].write("\u2192", unsafe_allow_html=True)  # Unicode right arrow
+
+    # Step 3
+    step3 = columns[4].button("Step 3", key="step3", help="Test", on_click=None, args=None, kwargs=None)
+    columns[5].write("\u2192", unsafe_allow_html=True)  # Unicode right arrow
+
+    # Step 4
+    step4 = columns[6].button("Step 4", key="step4", help="Export", on_click=None, args=None, kwargs=None)
+
+    # Style for buttons
+    button_style = """
+        <style>
+            .stButton button {
+                background-color: #007BFF;
+                color: white;
+                font-weight: bold;
+            }
+        </style>
+    """
+
+    # Display the custom CSS for button styling
+    st.markdown(button_style, unsafe_allow_html=True)
+
+    # Labels for each step
+    columns2 = st.columns([1, 1, 1, 1, 1, 1, 1])
+
+    # Collect Data
+    columns2[0].markdown("""<p style="text-align:center; font-weight: bold;">  Collect Data  </p>""", unsafe_allow_html=True)
+
+    # Train
+    columns2[2].markdown("""<p style="text-align:center; font-weight: bold;">     Train  </p> """, unsafe_allow_html=True)
+
+    # Test
+    columns2[4].markdown("""<p style="text-align:center; font-weight: bold;">       Test  </p>    """, unsafe_allow_html=True)
+
+    # Export
+    columns2[6].markdown("""<p style="text-align:center; font-weight: bold;">      Export  </p> """, unsafe_allow_html=True)
+
+# Training Initiation: Some other section 
+elif section == "Training Initiation":
     # Use session state to access uploaded files
     get_session_state() 
     me_files = st.session_state.me_files
@@ -262,7 +311,7 @@ elif section == "Section 6":
         st.image(image1, caption='')
 
 # sectino 7 /////////////////////////////////////////////////////////////////////////////////////
-elif section == "Section 7":
+elif section == "Machine Learning":
     st.markdown('<div class = "center"><h2 class="header"> What do you mean by machine learning ?</h2></div>', unsafe_allow_html=True)
     col1, col2 = st.columns(2)
     with col1:
@@ -276,8 +325,8 @@ elif section == "Section 7":
         image1 = Image.open('media/Picture4.png')
         st.image(image1, caption='')
 
-# section 8 /////////////////////////////////////////////////////////////////////////////////////
-elif section == "Section 8":
+# Setup the Model /////////////////////////////////////////////////////////////////////////////////////
+elif section == "Setup the Model":
     st.markdown('<div class = "center"><h2 class="header">How to Setup the Model for Training ?</h2> </div>', unsafe_allow_html=True)
     col1, col2 = st.columns(2)
     with col1:
@@ -322,7 +371,7 @@ elif section == "Section 8":
     image1 = Image.open('media/Picture7.gif')
     st.image(image1, caption='')
 
-elif section == "Section 9":
+elif section == "Training Parameters":
     st.markdown("""
                 <div class=contaienr> <p>How your model trains depends on the Training Parameters that you set. Training parameters are values that control certain properties of the training process and of the resulting ML model. Let’s look at 2 important training parameters – epochs and learning rate, number of layers.
                 </p> </div>  """, unsafe_allow_html=True)
@@ -439,7 +488,7 @@ elif section == "Train":
 
         # Use session state to access uploaded files
        
-elif section == "Section 11":
+elif section == "Re-Train":
         st.markdown('<h2 class="header"> Train the Machine Again </h2> ', unsafe_allow_html=True)
         st.write("""If the accuracy is not good enough you can consider re-adjusting the training parameters, and training again. """)
         epochs_duplicate = st.slider("Number of Epochs", 10, 100, 10)
@@ -523,7 +572,57 @@ elif section == "Section 11":
             # Save the model
             model.save('model.h5')
 
-elif section == "Section 12":
+elif section == "Step - 3":
+    st.markdown("<div class='center'><h2>Teach the Computer to Recognize your Face</h2></div>", unsafe_allow_html=True)
+    
+    columns = st.columns([1, 1, 1, 1, 1, 1, 1])
+
+    # Step 1
+    step1 = columns[0].button("Step 1", key="step1", help="Collect Data", on_click=None, args=None, kwargs=None)
+    columns[1].write("\u2192", unsafe_allow_html=True)  # Unicode right arrow
+
+    # Step 2
+    step2 = columns[2].button("Step 2", key="step2", help="Train", on_click=None, args=None, kwargs=None)
+    columns[3].write("\u2192", unsafe_allow_html=True)  # Unicode right arrow
+
+    # Step 3
+    step3 = columns[4].button("Step 3", key="step3", help="Test", on_click=None, args=None, kwargs=None)
+    columns[5].write("\u2192", unsafe_allow_html=True)  # Unicode right arrow
+
+    # Step 4
+    step4 = columns[6].button("Step 4", key="step4", help="Export", on_click=None, args=None, kwargs=None)
+
+    # Style for buttons
+    button_style = """
+        <style>
+            .stButton button {
+                background-color: #007BFF;
+                color: white;
+                font-weight: bold;
+            }
+        </style>
+    """
+
+    # Display the custom CSS for button styling
+    st.markdown(button_style, unsafe_allow_html=True)
+
+    # Labels for each step
+    columns2 = st.columns([1, 1, 1, 1, 1, 1, 1])
+
+    # Collect Data
+    columns2[0].markdown("""<p style="text-align:center; font-weight: bold;">  Collect Data  </p>""", unsafe_allow_html=True)
+
+    # Train
+    columns2[2].markdown("""<p style="text-align:center; font-weight: bold;">     Train  </p> """, unsafe_allow_html=True)
+
+    # Test
+    columns2[4].markdown("""<p style="text-align:center; font-weight: bold;">       Test  </p>    """, unsafe_allow_html=True)
+
+    # Export
+    columns2[6].markdown("""<p style="text-align:center; font-weight: bold;">      Export  </p> """, unsafe_allow_html=True)
+
+
+elif section == "Test":
     st.markdown('<h2 class="header"> Test the model </h2> ', unsafe_allow_html=True)
 
     # Option to upload a test image
@@ -574,7 +673,7 @@ elif section == "Section 12":
     else:
         st.warning("Please upload a test image or capture one.")
 
-elif section == "Section 13":
+elif section == "Improve Accuracy":
     st.markdown('<h4 class="header"> Was the model able to recognize the face correctly?</h4> ', unsafe_allow_html=True)
 
 
@@ -616,3 +715,56 @@ elif section == "Section 13":
 
     else:
         st.markdown('<h2 class="header">Great ! Go to next section.</h2> ', unsafe_allow_html=True)
+
+elif section == "Step - 4":
+    st.markdown("<div class='center'><h2>Teach the Computer to Recognize your Face</h2></div>", unsafe_allow_html=True)
+    
+    columns = st.columns([1, 1, 1, 1, 1, 1, 1])
+
+    # Step 1
+    step1 = columns[0].button("Step 1", key="step1", help="Collect Data", on_click=None, args=None, kwargs=None)
+    columns[1].write("\u2192", unsafe_allow_html=True)  # Unicode right arrow
+
+    # Step 2
+    step2 = columns[2].button("Step 2", key="step2", help="Train", on_click=None, args=None, kwargs=None)
+    columns[3].write("\u2192", unsafe_allow_html=True)  # Unicode right arrow
+
+    # Step 3
+    step3 = columns[4].button("Step 3", key="step3", help="Test", on_click=None, args=None, kwargs=None)
+    columns[5].write("\u2192", unsafe_allow_html=True)  # Unicode right arrow
+
+    # Step 4
+    step4 = columns[6].button("Step 4", key="step4", help="Export", on_click=None, args=None, kwargs=None)
+
+    # Style for buttons
+    button_style = """
+        <style>
+            .stButton button {
+                background-color: #007BFF;
+                color: white;
+                font-weight: bold;
+            }
+        </style>
+    """
+
+    # Display the custom CSS for button styling
+    st.markdown(button_style, unsafe_allow_html=True)
+
+    # Labels for each step
+    columns2 = st.columns([1, 1, 1, 1, 1, 1, 1])
+
+    # Collect Data
+    columns2[0].markdown("""<p style="text-align:center; font-weight: bold;">  Collect Data  </p>""", unsafe_allow_html=True)
+
+    # Train
+    columns2[2].markdown("""<p style="text-align:center; font-weight: bold;">     Train  </p> """, unsafe_allow_html=True)
+
+    # Test
+    columns2[4].markdown("""<p style="text-align:center; font-weight: bold;">       Test  </p>    """, unsafe_allow_html=True)
+
+    # Export
+    columns2[6].markdown("""<p style="text-align:center; font-weight: bold;">      Export  </p> """, unsafe_allow_html=True)
+
+
+elif section == "Conclusion":
+    st.write("Conclusion")
