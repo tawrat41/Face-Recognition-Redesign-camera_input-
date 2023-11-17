@@ -71,6 +71,7 @@ st.markdown(
         p {
             text-align: justify;
             text-justify: inter-word;
+            font-size: 1.2rem;
         }
 
         .center {
@@ -85,7 +86,7 @@ st.markdown(
             margin-right: 50px;
         }
 
-        .stVideo > div {
+        .stVideo video {
             width: 50%;
         }
 
@@ -121,6 +122,7 @@ st.markdown(
             background-color: #7209b7;
             color: white;
         }
+
         #data-collect{
             font-size:2rem;
             font-weight:bold;
@@ -209,9 +211,21 @@ elif section == "Face Recognition by Computer":
                     </p> </div>
                     """, unsafe_allow_html=True)
 
- 
-    video_url = "media/next_for_fr.mp4"
-    st.video(video_url)
+
+    col1, col2, col3 = st.columns([1, 2, 1])  # Adjust the width of col2 as needed
+
+    with col1:
+        pass
+
+    with col2:
+        video_url = "media/next_for_fr.mp4"
+        st.video(video_url)
+
+    with col3:
+        pass
+
+
+
 
     st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
     col1, col2= st.columns(2)
@@ -224,38 +238,29 @@ elif section == "Face Recognition by Computer":
 
 elif section == "Step - 1":
     st.markdown("<div class='center'><h2>Teach the Computer to Recognize your Face</h2></div>", unsafe_allow_html=True)
-    
-    columns = st.columns([1, 1, 1, 1, 1, 1, 1])
 
-    # Step 1
-    step1 = columns[0].button("Step 1", key="step1", help="Collect Data", on_click=None, args=None, kwargs=None)
-    columns[1].write("&#10230;", unsafe_allow_html=True)  # Unicode right arrow
 
-    # Step 2
-    step2 = columns[2].button("Step 2", key="step2", help="Train", on_click=None, args=None, kwargs=None)
-    columns[3].write("&#10230;", unsafe_allow_html=True)  # Unicode right arrow
+    col0, col1, col2, col3, col4, col5, col6 = st.columns(7)
 
-    # Step 3
-    step3 = columns[4].button("Step 3", key="step3", help="Test", on_click=None, args=None, kwargs=None)
-    columns[5].write("&#10230;", unsafe_allow_html=True)  # Unicode right arrow
+    with col0:
+        st.button("Step 1", key="step1", help="Collect Data", on_click=lambda: st.session_state.update({"page_index": 3}))
+        st.markdown("""<p style="text-align:center; font-weight: bold;">Collect Data</p>""", unsafe_allow_html=True)
+    with col1:
+        st.markdown("""<p style="text-align:center;">&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&#10148;</p>""", unsafe_allow_html=True)
+    with col2:
+        st.button("Step 2", key="step2", help="Train", on_click=None)
+        st.markdown("""<p style="text-align:center; font-weight: bold;">Train</p> """, unsafe_allow_html=True)
+    with col3:
+        st.markdown("""<p style="text-align:center;">&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&#10148;</p>""", unsafe_allow_html=True)
+    with col4:
+        st.button("Step 3", key="step3", help="Test", on_click=None)
+        st.markdown("""<p style="text-align:center; font-weight: bold;">Test</p>    """, unsafe_allow_html=True)
+    with col5:
+        st.markdown("""<p style="text-align:center;">&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&#10148;</p>""", unsafe_allow_html=True)
+    with col6:
+        st.button("Step 4", key="step4", help="Export", on_click=None)
+        st.markdown("""<p style="text-align:center; font-weight: bold;">Export</p>    """, unsafe_allow_html=True)
 
-    # Step 4
-    step4 = columns[6].button("Step 4", key="step4", help="Export", on_click=None, args=None, kwargs=None)
-
-    # Labels for each step
-    columns2 = st.columns([1, 1, 1, 1, 1, 1, 1])
-
-    # Collect Data
-    columns2[0].markdown("""<p style="text-align:center; font-weight: bold;">  Collect Data  </p>""", unsafe_allow_html=True)
-
-    # Train
-    columns2[2].markdown("""<p style="text-align:center; font-weight: bold;">Train</p> """, unsafe_allow_html=True)
-
-    # Test
-    columns2[4].markdown("""<p style="text-align:center; font-weight: bold;">       Test  </p>    """, unsafe_allow_html=True)
-
-    # Export
-    columns2[6].markdown("""<p style="text-align:center; font-weight: bold;">      Export  </p> """, unsafe_allow_html=True)
 
     st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
     st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
@@ -345,37 +350,26 @@ elif section == "Upload or Capture Image":
 elif section == "Step - 2":
     st.markdown("<div class='center'><h2>Teach the Computer to Recognize your Face</h2></div>", unsafe_allow_html=True)
     
-    columns = st.columns([1, 1, 1, 1, 1, 1, 1])
+    col0, col1, col2, col3, col4, col5, col6 = st.columns(7)
 
-    # Step 1
-    step1 = columns[0].button("Step 1", key="step1", help="Collect Data", on_click=None, args=None, kwargs=None)
-    columns[1].write("&#10230;", unsafe_allow_html=True)  # Unicode right arrow
-
-    # Step 2
-    step2 = columns[2].button("Step 2", key="step2", help="Train", on_click=None, args=None, kwargs=None)
-    columns[3].write("&#10230;", unsafe_allow_html=True)  # Unicode right arrow
-
-    # Step 3
-    step3 = columns[4].button("Step 3", key="step3", help="Test", on_click=None, args=None, kwargs=None)
-    columns[5].write("&#10230;", unsafe_allow_html=True)  # Unicode right arrow
-
-    # Step 4
-    step4 = columns[6].button("Step 4", key="step4", help="Export", on_click=None, args=None, kwargs=None)
-
-    # Labels for each step
-    columns2 = st.columns([1, 1, 1, 1, 1, 1, 1])
-
-    # Collect Data
-    columns2[0].markdown("""<p style="text-align:center; font-weight: bold;">  Collect Data  </p>""", unsafe_allow_html=True)
-
-    # Train
-    columns2[2].markdown("""<p style="text-align:center; font-weight: bold;">     Train  </p> """, unsafe_allow_html=True)
-
-    # Test
-    columns2[4].markdown("""<p style="text-align:center; font-weight: bold;">       Test  </p>    """, unsafe_allow_html=True)
-
-    # Export
-    columns2[6].markdown("""<p style="text-align:center; font-weight: bold;">      Export  </p> """, unsafe_allow_html=True)
+    with col0:
+        st.button("Step 1", key="step1", help="Collect Data", on_click=lambda: st.session_state.update({"page_index": 3}))
+        st.markdown("""<p style="text-align:center; font-weight: bold;">Collect Data</p>""", unsafe_allow_html=True)
+    with col1:
+        st.markdown("""<p style="text-align:center;">&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&#10148;</p>""", unsafe_allow_html=True)
+    with col2:
+        st.button("Step 2", key="step2", help="Train", on_click=lambda: st.session_state.update({"page_index": 6}))
+        st.markdown("""<p style="text-align:center; font-weight: bold;">Train</p> """, unsafe_allow_html=True)
+    with col3:
+        st.markdown("""<p style="text-align:center;">&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&#10148;</p>""", unsafe_allow_html=True)
+    with col4:
+        st.button("Step 3", key="step3", help="Test", on_click=None)
+        st.markdown("""<p style="text-align:center; font-weight: bold;">Test</p>    """, unsafe_allow_html=True)
+    with col5:
+        st.markdown("""<p style="text-align:center;">&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&#10148;</p>""", unsafe_allow_html=True)
+    with col6:
+        st.button("Step 4", key="step4", help="Export", on_click=None)
+        st.markdown("""<p style="text-align:center; font-weight: bold;">Export</p>    """, unsafe_allow_html=True)
 
     st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
     st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
@@ -476,8 +470,18 @@ elif section == "Setup the Model":
 
                 </p> </div>  """, unsafe_allow_html=True)
     
-    image1 = Image.open('media/Picture7.gif')
-    st.image(image1, caption='', width=None)
+    col1, col2, col3 = st.columns([1,2,1])
+    with col1:
+        pass
+
+    with col2:
+        image1 = Image.open('media/Picture7.gif')
+        st.image(image1, caption='', width=None)
+
+    with col3:
+        pass
+    
+
 
     st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
     col1, col2= st.columns(2)
@@ -759,39 +763,29 @@ elif section == "Re-Train":
 
 # step - 3 /////////////////////////////////////////////////////////////////////////////////////
 elif section == "Step - 3":
-    st.markdown("<div class='center'><h2>Teach the Computer to Recognize your Face</h2></div>", unsafe_allow_html=True)
     
-    columns = st.columns([1, 1, 1, 1, 1, 1, 1])
+    st.markdown("<div class='center'><h2>Teach the Computer to Recognize your Face</h2></div>", unsafe_allow_html=True)
 
-    # Step 1
-    step1 = columns[0].button("Step 1", key="step1", help="Collect Data", on_click=None, args=None, kwargs=None)
-    columns[1].write("&#10230;", unsafe_allow_html=True)  # Unicode right arrow
+    col0, col1, col2, col3, col4, col5, col6 = st.columns(7)
 
-    # Step 2
-    step2 = columns[2].button("Step 2", key="step2", help="Train", on_click=None, args=None, kwargs=None)
-    columns[3].write("&#10230;", unsafe_allow_html=True)  # Unicode right arrow
-
-    # Step 3
-    step3 = columns[4].button("Step 3", key="step3", help="Test", on_click=None, args=None, kwargs=None)
-    columns[5].write("&#10230;", unsafe_allow_html=True)  # Unicode right arrow
-
-    # Step 4
-    step4 = columns[6].button("Step 4", key="step4", help="Export", on_click=None, args=None, kwargs=None)
-
-    # Labels for each step
-    columns2 = st.columns([1, 1, 1, 1, 1, 1, 1])
-
-    # Collect Data
-    columns2[0].markdown("""<p style="text-align:center; font-weight: bold;">  Collect Data  </p>""", unsafe_allow_html=True)
-
-    # Train
-    columns2[2].markdown("""<p style="text-align:center; font-weight: bold;">     Train  </p> """, unsafe_allow_html=True)
-
-    # Test
-    columns2[4].markdown("""<p style="text-align:center; font-weight: bold;">       Test  </p>    """, unsafe_allow_html=True)
-
-    # Export
-    columns2[6].markdown("""<p style="text-align:center; font-weight: bold;">      Export  </p> """, unsafe_allow_html=True)
+    with col0:
+        st.button("Step 1", key="step1", help="Collect Data", on_click=lambda: st.session_state.update({"page_index": 3}))
+        st.markdown("""<p style="text-align:center; font-weight: bold;">Collect Data</p>""", unsafe_allow_html=True)
+    with col1:
+        st.markdown("""<p style="text-align:center;">&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&#10148;</p>""", unsafe_allow_html=True)
+    with col2:
+        st.button("Step 2", key="step2", help="Train", on_click=lambda: st.session_state.update({"page_index": 6}))
+        st.markdown("""<p style="text-align:center; font-weight: bold;">Train</p> """, unsafe_allow_html=True)
+    with col3:
+        st.markdown("""<p style="text-align:center;">&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&#10148;</p>""", unsafe_allow_html=True)
+    with col4:
+        st.button("Step 3", key="step3", help="Test", on_click=lambda: st.session_state.update({"page_index": 13}))
+        st.markdown("""<p style="text-align:center; font-weight: bold;">Test</p>    """, unsafe_allow_html=True)
+    with col5:
+        st.markdown("""<p style="text-align:center;">&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&#10148;</p>""", unsafe_allow_html=True)
+    with col6:
+        st.button("Step 4", key="step4", help="Export", on_click=None)
+        st.markdown("""<p style="text-align:center; font-weight: bold;">Export</p>    """, unsafe_allow_html=True)
 
     st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
     st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
@@ -864,60 +858,54 @@ elif section == "Test":
 # Improve Accuracy /////////////////////////////////////////////////////////////////////////////////////
 elif section == "Improve Accuracy":
 
-    # st.markdown(
-    # """
-    # <style>
-    #     .stApp {
-    #         # max-width: 800px;
-    #         margin: auto;
-    #         text-align: center;
-    #     }
+    st.markdown('<h2 class="header" style="text-align:center;"> Was the model able to recognize the face correctly?</h2>', unsafe_allow_html=True)
 
-    # </style>
-    # """,
-    # unsafe_allow_html=True
-    # )
-    st.markdown('<h2 class="header" style="text-align:center;"> Was the model able to recognize the face correctly?</h2> ', unsafe_allow_html=True)
-   
+    col1, col2, col3 = st.columns([1, 3, 1])
 
-    selection = st.radio(
-    "",
-    ["YES", "NO"]
-    )
+    with col1:
+        pass
 
-    if selection == 'NO':
-        st.markdown('<h2 class="header"></h2> ', unsafe_allow_html=True)
-        col1, col2 = st.columns(2)
-        with col1:
-            st.markdown('<h4 class="header">If not, then you have 2 options: </h4> ', unsafe_allow_html=True)
-            st.markdown("""
-                <div>
+    with col2:
+        # Buttons for "YES" and "NO"
+        col4, col5 = st.columns(2)
+        yes_button = col4.button("YES", key="yes_button")
+        no_button = col5.button("NO", key="no_button")
+
+        if yes_button:
+            st.markdown('<h2 class="header">Great! Go to the next section.</h2>', unsafe_allow_html=True)
+
+        if no_button:
+            st.markdown('<h2 class="header"></h2>', unsafe_allow_html=True)
+            col1, col2 = st.columns([1,1.5])
+            with col1:
+                st.markdown('<h4 class="header">If not, then you have 2 options: </h4>', unsafe_allow_html=True)
+                st.markdown("""
+                    <div style="margin-bottom: 10px;">
                         <ul>
                             <li>Adjust training parameters and Re-train the model</li>
                             <li>Add more images to your dataset</li>
                         </ul>
-                        </div>
-
-
+                            
+                    </div>
                 """, unsafe_allow_html=True)
 
-        with col2:
-            st.markdown('<h4 class="header">How do you improve the accuracy of the system? </h4> ', unsafe_allow_html=True)
-            st.markdown("""
-                <div>
+            st.button("Upload or Capture more image", key="step1-again", help="Go to Step-1", on_click=lambda: st.session_state.update({"page_index": 4}))
+            st.button("Adjust Training Parameters", key="Adjust", help="Go to Step-2", on_click=lambda: st.session_state.update({"page_index": 10}))
+
+
+            with col2:
+                st.markdown('<h4 class="header">How do you improve the accuracy of the system? </h4>', unsafe_allow_html=True)
+                st.markdown("""
+                    <div>
                         <ol>
-                            <li>You can collect more data to train the system. The more data you feed into the system, the more exposed it is to a variety of
-                            examples and the better the predictions. Try training the model with more images of each label.
-                            </li>
-                            <li>You can the fine-tune parameters of the machine learning model. Play around with the number of epochs, hidden layers, and the learning rate. Try different values and see which combination of parameters makes the model’s predictions more accurate. </li>
+                            <li>You can collect more data to train the system. The more data you feed into the system, the more exposed it is to a variety of examples and the better the predictions. Try training the model with more images of each label.</li>
+                            <li>You can fine-tune the parameters of the machine learning model. Play around with the number of epochs, hidden layers, and the learning rate. Try different values and see which combination of parameters makes the model’s predictions more accurate.</li>
                         </ol>
-                </div>
+                    </div>
+                """,  unsafe_allow_html=True)
 
-
-            """,  unsafe_allow_html=True)
-
-    else:
-        st.markdown('<h2 class="header">Great ! Go to next section.</h2> ', unsafe_allow_html=True)
+    with col3:
+        pass
 
     st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
     col1, col2= st.columns(2)
@@ -930,38 +918,26 @@ elif section == "Improve Accuracy":
 elif section == "Step - 4":
     st.markdown("<div class='center'><h2>Teach the Computer to Recognize your Face</h2></div>", unsafe_allow_html=True)
     
-    columns = st.columns([1, 1, 1, 1, 1, 1, 1])
+    col0, col1, col2, col3, col4, col5, col6 = st.columns(7)
 
-    # Step 1
-    step1 = columns[0].button("Step 1", key="step1", help="Collect Data", on_click=None, args=None, kwargs=None)
-    columns[1].write("&#10230;", unsafe_allow_html=True)  # Unicode right arrow
-
-    # Step 2
-    step2 = columns[2].button("Step 2", key="step2", help="Train", on_click=None, args=None, kwargs=None)
-    columns[3].write("&#10230;", unsafe_allow_html=True)  # Unicode right arrow
-
-    # Step 3
-    step3 = columns[4].button("Step 3", key="step3", help="Test", on_click=None, args=None, kwargs=None)
-    columns[5].write("&#10230;", unsafe_allow_html=True)  # Unicode right arrow
-
-    # Step 4
-    step4 = columns[6].button("Step 4", key="step4", help="Export", on_click=None, args=None, kwargs=None)
-
-
-    # Labels for each step
-    columns2 = st.columns([1, 1, 1, 1, 1, 1, 1])
-
-    # Collect Data
-    columns2[0].markdown("""<p style="text-align:center; font-weight: bold;">  Collect Data  </p>""", unsafe_allow_html=True)
-
-    # Train
-    columns2[2].markdown("""<p style="text-align:center; font-weight: bold;">     Train  </p> """, unsafe_allow_html=True)
-
-    # Test
-    columns2[4].markdown("""<p style="text-align:center; font-weight: bold;">       Test  </p>    """, unsafe_allow_html=True)
-
-    # Export
-    columns2[6].markdown("""<p style="text-align:center; font-weight: bold;">      Export  </p> """, unsafe_allow_html=True)
+    with col0:
+        st.button("Step 1", key="step1", help="Collect Data", on_click=lambda: st.session_state.update({"page_index": 3}))
+        st.markdown("""<p style="text-align:center; font-weight: bold;">Collect Data</p>""", unsafe_allow_html=True)
+    with col1:
+        st.markdown("""<p style="text-align:center;">&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&#10148;</p>""", unsafe_allow_html=True)
+    with col2:
+        st.button("Step 2", key="step2", help="Train", on_click=lambda: st.session_state.update({"page_index": 6}))
+        st.markdown("""<p style="text-align:center; font-weight: bold;">Train</p> """, unsafe_allow_html=True)
+    with col3:
+        st.markdown("""<p style="text-align:center;">&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&#10148;</p>""", unsafe_allow_html=True)
+    with col4:
+        st.button("Step 3", key="step3", help="Test", on_click=lambda: st.session_state.update({"page_index": 13}))
+        st.markdown("""<p style="text-align:center; font-weight: bold;">Test</p>    """, unsafe_allow_html=True)
+    with col5:
+        st.markdown("""<p style="text-align:center;">&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&#10148;</p>""", unsafe_allow_html=True)
+    with col6:
+        st.button("Step 4", key="step4", help="Export", on_click=None)
+        st.markdown("""<p style="text-align:center; font-weight: bold;">Export</p>    """, unsafe_allow_html=True)
 
 
     st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
