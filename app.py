@@ -178,14 +178,16 @@ elif section == "Face Recognition by Computer":
                     </p> </div>
                     """, unsafe_allow_html=True)
 
-
+ 
     video_url = "media/next_for_fr.mp4"
     st.video(video_url)
     
-    # if st.button("Previous"):
-    #     st.markdown("<a href='#Section-1'>Go to Section 1</a>", unsafe_allow_html=True)
-    # if st.button("Next"):
-    #     st.markdown("<a href='#Section-3'>Go to Step - 1</a>", unsafe_allow_html=True)
+    if st.button("Previous"):
+        section == "Introduction"
+        st.experimental_rerun()  # Re-run the app to update the section
+    if st.button("Next"):
+        section == "Step - 1"
+        st.experimental_rerun()  # Re-run the app to update the section
 
 elif section == "Step - 1":
     st.markdown("<div class='center'><h2>Teach the Computer to Recognize your Face</h2></div>", unsafe_allow_html=True)
@@ -286,7 +288,7 @@ elif section == "Upload or Capture Image":
     # if st.button("Previous"):
     #     st.markdown("<a href='#Section-3'>Go to Step - 1</a>", unsafe_allow_html=True)
 
-
+# step - 2  /////////////////////////////////////////////////////////////////////////////////////
 elif section == "Step - 2":
     st.markdown("<div class='center'><h2>Teach the Computer to Recognize your Face</h2></div>", unsafe_allow_html=True)
     
@@ -401,6 +403,8 @@ elif section == "Setup the Model":
     image1 = Image.open('media/Picture7.gif')
     st.image(image1, caption='', width=None)
 
+
+# training parameters /////////////////////////////////////////////////////////////////////////////////////
 elif section == "Training Parameters":
     st.markdown('<div class = "center"><h2 class="header">Training Parameters</h2> </div>', unsafe_allow_html=True)
     st.markdown("""
@@ -420,6 +424,9 @@ elif section == "Training Parameters":
     st.markdown("""
                 <div class=container> <p>Every Neural Network has one input and one output layer, but can have any number of hidden layers. Machine Learning Engineers often use systematic experimentation to discover what works best for the specific data. They train the model with a different number of hidden layers to see which one works best.
                 </p> </div>  """, unsafe_allow_html=True)
+
+
+# train /////////////////////////////////////////////////////////////////////////////////////
 
 elif section == "Train":
 
@@ -537,6 +544,7 @@ elif section == "Train":
 
         # Use session state to access uploaded files
        
+# re train /////////////////////////////////////////////////////////////////////////////////////
 elif section == "Re-Train":
     st.markdown(
     """
@@ -650,6 +658,7 @@ elif section == "Re-Train":
 
         # Use session state to access uploaded files
 
+# step - 3 /////////////////////////////////////////////////////////////////////////////////////
 elif section == "Step - 3":
     st.markdown("<div class='center'><h2>Teach the Computer to Recognize your Face</h2></div>", unsafe_allow_html=True)
     
@@ -685,7 +694,7 @@ elif section == "Step - 3":
     # Export
     columns2[6].markdown("""<p style="text-align:center; font-weight: bold;">      Export  </p> """, unsafe_allow_html=True)
 
-
+# test /////////////////////////////////////////////////////////////////////////////////////
 elif section == "Test":
     st.markdown('<h2 class="header"> Test the model </h2> ', unsafe_allow_html=True)
 
@@ -737,6 +746,7 @@ elif section == "Test":
     else:
         st.warning("Please upload a test image or capture one.")
 
+# Improve Accuracy /////////////////////////////////////////////////////////////////////////////////////
 elif section == "Improve Accuracy":
 
     # st.markdown(
@@ -794,6 +804,7 @@ elif section == "Improve Accuracy":
     else:
         st.markdown('<h2 class="header">Great ! Go to next section.</h2> ', unsafe_allow_html=True)
 
+# step - 4 /////////////////////////////////////////////////////////////////////////////////////
 elif section == "Step - 4":
     st.markdown("<div class='center'><h2>Teach the Computer to Recognize your Face</h2></div>", unsafe_allow_html=True)
     
@@ -830,7 +841,7 @@ elif section == "Step - 4":
     # Export
     columns2[6].markdown("""<p style="text-align:center; font-weight: bold;">      Export  </p> """, unsafe_allow_html=True)
 
-
+# conclusion /////////////////////////////////////////////////////////////////////////////////////
 elif section == "Conclusion":
     st.markdown("""<h2 class="header"> Congratulations! </h2> <h5>You just created your very own Face Recognition system! </h5>
 """, unsafe_allow_html=True)
