@@ -39,11 +39,26 @@ def capture_and_save_image(label, save_folder):
         st.image(cv2_img, caption=f"{label} Image")
         st.success(f"{label} Image captured and saved in {save_folder}")
 
+session_state = st.session_state
+if 'page_index' not in session_state:
+    session_state.page_index = 0
+
+# Function to get or create the session state
+def get_session_state():
+    if 'me_files' not in st.session_state:
+        st.session_state.me_files = None
+    if 'not_me_files' not in st.session_state:
+        st.session_state.not_me_files = None
+
+
+
+# Get or create session state
+get_session_state()
 
 
 # st.sidebar.title("Make your Face Recognition System")
 st.sidebar.markdown("<h1>Make your Face Recognition System</h1>", unsafe_allow_html=True)
-section = st.sidebar.radio("Steps to follow - ", ["Introduction", "Face Recognition by Computer", "Step - 1", "Collect Data", "Upload or Capture Image", "Step - 2","Training Initiation", "Machine Learning", "Setup the Model", "Training Parameters", "Train", "Re-Train", "Step - 3","Test", "Improve Accuracy", "Step - 4", "Conclusion"])
+section = st.sidebar.radio("Steps to follow - ", ["Introduction", "Face Recognition by Computer", "Step - 1", "Collect Data", "Upload or Capture Image", "Step - 2","Training Initiation", "Machine Learning", "Setup the Model", "Training Parameters", "Train", "Re-Train", "Step - 3","Test", "Improve Accuracy", "Step - 4", "Conclusion"],  index=session_state.page_index)
 
 # Set the theme to light
 st.markdown(
@@ -97,6 +112,9 @@ st.markdown(
             color: white;
             font-weight: bold;
             border: 0;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .stButton button:hover{
@@ -122,7 +140,9 @@ st.markdown(
         #MainMenu {
             color: #7209b7; /* Change the color code to the desired color */
         }
-        
+        .blank{
+            height: 40px;
+        }
 
         
             
@@ -131,16 +151,17 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+# # new code
+# session_state = st.session_state
+# # Initialize page index if not present
+# if 'page_index' not in session_state:
+#     session_state.page_index = 0
+
 
 me_files = None
 not_me_files = None
 
-# Function to get or create the session state
-def get_session_state():
-    if 'me_files' not in st.session_state:
-        st.session_state.me_files = None
-    if 'not_me_files' not in st.session_state:
-        st.session_state.not_me_files = None
+
 
 # Function to upload images
 def upload_images(label, key):
@@ -165,10 +186,20 @@ if section == "Introduction":
     # st.markdown('<img src="media/Picture1.png">', unsafe_allow_html=True)
         image1 = Image.open('media/Picture1.png')
         st.image(image1, caption='')
-    # if st.button("Next"):
-    #     st.markdown("<a href='#Section-2'>Go to Face Recognition by Computer</a>", unsafe_allow_html=True)
+    
+    
+    st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
+    col1, col2, col3= st.columns(3)
 
-  
+    with col1:
+        pass
+    with col3:
+        pass
+    with col2:
+        st.button("Next", key="next_home", on_click=lambda: st.session_state.update({"page_index": 1}))    
+
+
+    
 
 # Face Recognition by Computer: Face Recognition by Computer /////////////////////////////////////////////////////////////////////////////////////
 elif section == "Face Recognition by Computer":
@@ -181,13 +212,15 @@ elif section == "Face Recognition by Computer":
  
     video_url = "media/next_for_fr.mp4"
     st.video(video_url)
+
+    st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
+    col1, col2= st.columns(2)
+    with col1:
+        st.button("Previous", key="prev_home", on_click=lambda: st.session_state.update({"page_index": 0}))
+    with col2:
+        st.button("Next", key="next_collect", on_click=lambda: st.session_state.update({"page_index": 2}))
+
     
-    if st.button("Previous"):
-        section == "Introduction"
-        st.experimental_rerun()  # Re-run the app to update the section
-    if st.button("Next"):
-        section == "Step - 1"
-        st.experimental_rerun()  # Re-run the app to update the section
 
 elif section == "Step - 1":
     st.markdown("<div class='center'><h2>Teach the Computer to Recognize your Face</h2></div>", unsafe_allow_html=True)
@@ -224,6 +257,15 @@ elif section == "Step - 1":
     # Export
     columns2[6].markdown("""<p style="text-align:center; font-weight: bold;">      Export  </p> """, unsafe_allow_html=True)
 
+    st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
+    st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
+    st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
+    col1, col2= st.columns(2)
+    with col1:
+        st.button("Previous", key="prev_capture", on_click=lambda: st.session_state.update({"page_index": 1}))
+    with col2:
+        st.button("Next", key="next_step-2", on_click=lambda: st.session_state.update({"page_index": 3}))
+
 # section3: Collect data/////////////////////////////////////////////////////////////////////////////////////
 elif section == "Collect Data":
     st.markdown("<div class = 'center'><h2 id='Section-3'>Step 1 - Collect Data</h2></div>", unsafe_allow_html=True)
@@ -239,6 +281,13 @@ elif section == "Collect Data":
         st.markdown("""
                     <div class="container" id='collect-image'><span id='data-collect'>2</span> <p>Next, let’s give it images of people that are not you, so the machine understands the difference.</p>
                 </div>""", unsafe_allow_html=True)
+        
+    st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
+    col1, col2= st.columns(2)
+    with col1:
+        st.button("Previous", key="prev_step-1", on_click=lambda: st.session_state.update({"page_index": 1}))
+    with col2:
+        st.button("Next", key="next_capture", on_click=lambda: st.session_state.update({"page_index": 4}))
 
 
 # Upload or Capture Image: Teach the Computer to Recognize your Face /////////////////////////////////////////////////////////////////////////////////////
@@ -285,8 +334,12 @@ elif section == "Upload or Capture Image":
             if st.form_submit_button("Capture 'not me' Image"):
                 capture_and_save_image('not_me', os.path.abspath('captured_images/not_me'))
 
-    # if st.button("Previous"):
-    #     st.markdown("<a href='#Section-3'>Go to Step - 1</a>", unsafe_allow_html=True)
+    st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
+    col1, col2 = st.columns(2)    
+    with col1:
+        st.button("Previous", key="prev_capture", on_click=lambda: st.session_state.update({"page_index": 3}))
+    with col2:
+        st.button("Next", key="next_step-2", on_click=lambda: st.session_state.update({"page_index": 5}))
 
 # step - 2  /////////////////////////////////////////////////////////////////////////////////////
 elif section == "Step - 2":
@@ -324,6 +377,15 @@ elif section == "Step - 2":
     # Export
     columns2[6].markdown("""<p style="text-align:center; font-weight: bold;">      Export  </p> """, unsafe_allow_html=True)
 
+    st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
+    st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
+    st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
+    col1, col2= st.columns(2)
+    with col1:
+        st.button("Previous", key="prev_cap", on_click=lambda: st.session_state.update({"page_index": 4}))
+    with col2:
+        st.button("Next", key="next_train", on_click=lambda: st.session_state.update({"page_index": 6}))
+
 # Training Initiation: Some other section 
 elif section == "Training Initiation":
     # Use session state to access uploaded files
@@ -342,6 +404,13 @@ elif section == "Training Initiation":
         image1 = Image.open('media/Picture2.png')
         st.image(image1, caption='')
 
+    st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
+    col1, col2= st.columns(2)
+    with col1:
+        st.button("Previous", key="prev_st-2", on_click=lambda: st.session_state.update({"page_index": 5}))
+    with col2:
+        st.button("Next", key="next_ml", on_click=lambda: st.session_state.update({"page_index": 7}))
+
 # sectino 7 /////////////////////////////////////////////////////////////////////////////////////
 elif section == "Machine Learning":
     st.markdown('<div class = "center"><h2 class="header"> What do you mean by machine learning ?</h2></div>', unsafe_allow_html=True)
@@ -356,6 +425,13 @@ elif section == "Machine Learning":
     # st.markdown('<img src="media/Picture1.png">', unsafe_allow_html=True)
         image1 = Image.open('media/Picture4.png')
         st.image(image1, caption='')
+
+    st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
+    col1, col2= st.columns(2)
+    with col1:
+        st.button("Previous", key="prev_ini", on_click=lambda: st.session_state.update({"page_index": 6}))
+    with col2:
+        st.button("Next", key="next_setup_model", on_click=lambda: st.session_state.update({"page_index": 8}))
 
 # Setup the Model /////////////////////////////////////////////////////////////////////////////////////
 elif section == "Setup the Model":
@@ -403,6 +479,13 @@ elif section == "Setup the Model":
     image1 = Image.open('media/Picture7.gif')
     st.image(image1, caption='', width=None)
 
+    st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
+    col1, col2= st.columns(2)
+    with col1:
+        st.button("Previous", key="prev_ml", on_click=lambda: st.session_state.update({"page_index": 7}))
+    with col2:
+        st.button("Next", key="next_para", on_click=lambda: st.session_state.update({"page_index": 9}))
+
 
 # training parameters /////////////////////////////////////////////////////////////////////////////////////
 elif section == "Training Parameters":
@@ -424,10 +507,16 @@ elif section == "Training Parameters":
     st.markdown("""
                 <div class=container> <p>Every Neural Network has one input and one output layer, but can have any number of hidden layers. Machine Learning Engineers often use systematic experimentation to discover what works best for the specific data. They train the model with a different number of hidden layers to see which one works best.
                 </p> </div>  """, unsafe_allow_html=True)
+    
+    st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
+    col1, col2= st.columns(2)
+    with col1:
+        st.button("Previous", key="prev_set", on_click=lambda: st.session_state.update({"page_index": 8}))
+    with col2:
+        st.button("Next", key="next_train", on_click=lambda: st.session_state.update({"page_index": 10}))
 
 
 # train /////////////////////////////////////////////////////////////////////////////////////
-
 elif section == "Train":
 
     st.markdown(
@@ -542,7 +631,12 @@ elif section == "Train":
         # Save the model
         model.save('model.h5')
 
-        # Use session state to access uploaded files
+    st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
+    col1, col2= st.columns(2)
+    with col1:
+        st.button("Previous", key="prev_para", on_click=lambda: st.session_state.update({"page_index": 9}))
+    with col2:
+        st.button("Next", key="next_re-train", on_click=lambda: st.session_state.update({"page_index": 11}))
        
 # re train /////////////////////////////////////////////////////////////////////////////////////
 elif section == "Re-Train":
@@ -656,7 +750,12 @@ elif section == "Re-Train":
         # Save the model
         model.save('model.h5')
 
-        # Use session state to access uploaded files
+    st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
+    col1, col2= st.columns(2)
+    with col1:
+        st.button("Previous", key="prev_train", on_click=lambda: st.session_state.update({"page_index": 10}))
+    with col2:
+        st.button("Next", key="next_st-3", on_click=lambda: st.session_state.update({"page_index": 12}))
 
 # step - 3 /////////////////////////////////////////////////////////////////////////////////////
 elif section == "Step - 3":
@@ -693,6 +792,15 @@ elif section == "Step - 3":
 
     # Export
     columns2[6].markdown("""<p style="text-align:center; font-weight: bold;">      Export  </p> """, unsafe_allow_html=True)
+
+    st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
+    st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
+    st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
+    col1, col2= st.columns(2)
+    with col1:
+        st.button("Previous", key="prev_st-3", on_click=lambda: st.session_state.update({"page_index": 11}))
+    with col2:
+        st.button("Next", key="next_test", on_click=lambda: st.session_state.update({"page_index": 13}))
 
 # test /////////////////////////////////////////////////////////////////////////////////////
 elif section == "Test":
@@ -745,6 +853,13 @@ elif section == "Test":
             st.write("Result: This is not you.")
     else:
         st.warning("Please upload a test image or capture one.")
+
+    st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
+    col1, col2= st.columns(2)
+    with col1:
+        st.button("Previous", key="prev_st-3", on_click=lambda: st.session_state.update({"page_index": 12}))
+    with col2:
+        st.button("Next", key="next_acc", on_click=lambda: st.session_state.update({"page_index": 14}))
 
 # Improve Accuracy /////////////////////////////////////////////////////////////////////////////////////
 elif section == "Improve Accuracy":
@@ -804,6 +919,13 @@ elif section == "Improve Accuracy":
     else:
         st.markdown('<h2 class="header">Great ! Go to next section.</h2> ', unsafe_allow_html=True)
 
+    st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
+    col1, col2= st.columns(2)
+    with col1:
+        st.button("Previous", key="prev_test", on_click=lambda: st.session_state.update({"page_index": 13}))
+    with col2:
+        st.button("Next", key="next_st-4", on_click=lambda: st.session_state.update({"page_index": 15}))
+
 # step - 4 /////////////////////////////////////////////////////////////////////////////////////
 elif section == "Step - 4":
     st.markdown("<div class='center'><h2>Teach the Computer to Recognize your Face</h2></div>", unsafe_allow_html=True)
@@ -841,7 +963,29 @@ elif section == "Step - 4":
     # Export
     columns2[6].markdown("""<p style="text-align:center; font-weight: bold;">      Export  </p> """, unsafe_allow_html=True)
 
+
+    st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
+    st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
+    st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
+    col1, col2= st.columns(2)
+    with col1:
+        st.button("Previous", key="prev_st-4", on_click=lambda: st.session_state.update({"page_index": 14}))
+    with col2:
+        st.button("Next", key="next_con", on_click=lambda: st.session_state.update({"page_index": 16}))
+
 # conclusion /////////////////////////////////////////////////////////////////////////////////////
 elif section == "Conclusion":
     st.markdown("""<h2 class="header"> Congratulations! </h2> <h5>You just created your very own Face Recognition system! </h5>
-""", unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
+
+    st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
+    st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
+    st.markdown('<div class="blank"></div>', unsafe_allow_html=True)
+    col1, col2, col3= st.columns(3)
+    with col1:
+        pass
+    with col3:
+        pass
+    with col2 :
+        st.button("Previous", key="prev_st-4", on_click=lambda: st.session_state.update({"page_index": 15})) 
+
